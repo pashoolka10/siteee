@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Восстановление пароля — GameCard</title>
+    <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/print.css" media="print">
+</head>
+<body>
+    <div class="container section">
+        <section class="profile-card">
+            <h1 class="profile-card__title">Восстановление пароля</h1>
+
+            #if(link != ""):
+                <p class="profile-card__text">
+                    Ссылка для смены пароля готова:
+                </p>
+                <p><a class="button" href="#(link)">Перейти к смене пароля</a></p>
+                <p style="margin-top:18px;"><a href="/forgot">Запросить ссылку ещё раз</a></p>
+            #else:
+                <p class="profile-card__text">
+                    Укажите e-mail, который вы указывали при регистрации — мы сформируем ссылку для смены пароля.
+                </p>
+
+                #if(message != ""):
+                    <p class="form__message form__message_error">#(message)</p>
+                #endif
+
+                <form action="/forgot" method="post" class="form" style="margin:0 auto; text-align:left;">
+                    <input class="form__input" type="email" name="email" placeholder="Email" required>
+                    <button class="button" type="submit">Получить ссылку</button>
+                </form>
+            #endif
+
+            <p style="margin-top:22px;"><a href="/">На главную</a></p>
+        </section>
+    </div>
+</body>
+</html>

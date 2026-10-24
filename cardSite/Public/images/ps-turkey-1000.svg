@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+	<defs>
+		<linearGradient id="psBg2" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stop-color="#eaf3ff"/>
+			<stop offset="1" stop-color="#bcd8f7"/>
+		</linearGradient>
+		<linearGradient id="psNum2" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#4a9bf5"/>
+			<stop offset="1" stop-color="#1e5fc4"/>
+		</linearGradient>
+	</defs>
+	<rect width="900" height="1200" fill="url(#psBg2)"/>
+	<text x="60" y="110" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="bold" fill="#1e5fc4">PS STORE</text>
+	<text x="840" y="110" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="44" fill="#5b7fa6">Турция</text>
+	<rect x="640" y="150" width="220" height="150" fill="#e30a17"/>
+	<circle cx="740" cy="225" r="46" fill="#ffffff"/>
+	<circle cx="760" cy="225" r="37" fill="#e30a17"/>
+	<polygon points="800,205 806,222 824,222 810,233 815,250 800,240 785,250 790,233 776,222 794,222" fill="#ffffff"/>
+	<text x="450" y="420" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="60" font-weight="bold" fill="#16324f">ПОПОЛНЕНИЕ БАЛАНСА</text>
+	<text x="410" y="700" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="230" font-weight="bold" fill="url(#psNum2)">1000</text>
+	<text x="820" y="700" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="bold" fill="#1e5fc4">TRY</text>
+	<rect x="300" y="800" width="300" height="80" rx="40" fill="#ffffff"/>
+	<text x="450" y="855" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="bold" fill="#1e5fc4">PS4 | PS5</text>
+	<text x="450" y="960" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="44" fill="#16324f">КОД НА E-MAIL</text>
+	<text x="450" y="1080" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="38" fill="#4a6b8a">Активация в турецком аккаунте PSN</text>
+</svg>

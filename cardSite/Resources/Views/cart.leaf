@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Корзина — GameCard</title>
+    <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/print.css" media="print">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="logo" href="/">
+            <img class="logo__image" src="/images/logo.svg" alt="GameCard">
+            <span class="logo__text">GameCard</span>
+        </a>
+        <a class="profile-link" href="/profile">
+            <span class="avatar">#(avatarLetter)</span>
+            <span>#(userLogin)</span>
+        </a>
+    </div>
+</header>
+
+<main>
+    <div class="container page-title">
+        <h1 class="page-title__title">Корзина</h1>
+        <p class="page-title__note">Коды выдаются на e-mail в течение 5 минут после оплаты.</p>
+    </div>
+
+    <div class="container">
+        #if(isEmpty):
+            <p class="catalog-empty">В корзине пока пусто. <a href="/catalog">Перейти в каталог</a></p>
+        #else:
+            <ul class="cart-list">
+                #for(item in items):
+                    <li class="cart-item">
+                        <img class="cart-item__image" src="#(item.image)" alt="#(item.name)">
+                        <div>
+                            <h3 class="cart-item__name">#(item.name)</h3>
+                            <p class="cart-item__meta">#(item.price) ₽ за штуку</p>
+                        </div>
+                        <p class="cart-item__price">#(item.count) шт.</p>
+                        <div class="cart-item__controls">
+                            <form action="/cart/change" method="post">
+                                <input type="hidden" name="productId" value="#(item.id)">
+                                <input type="hidden" name="delta" value="-1">
+                                <button class="qty-button" type="submit">−</button>
+                            </form>
+                            <form action="/cart/change" method="post">
+                                <input type="hidden" name="productId" value="#(item.id)">
+                                <input type="hidden" name="delta" value="1">
+                                <button class="qty-button" type="submit">+</button>
+                            </form>
+                            <form action="/cart/remove" method="post">
+                                <input type="hidden" name="productId" value="#(item.id)">
+                                <button class="cart-item__remove" type="submit">Удалить</button>
+                            </form>
+                        </div>
+                        <p class="cart-item__sum">#(item.sum) ₽</p>
+                    </li>
+                #endfor
+            </ul>
+
+            <div class="cart-total">
+                <span>Итого к оплате:</span>
+                <span class="cart-total__value">#(total) ₽</span>
+            </div>
+
+            <section class="about-card" style="margin-bottom:24px;">
+                <h2 class="about-card__title">Оформление заказа</h2>
+                <p class="section__subtitle">Проверьте данные — на эту почту придёт код активации.</p>
+
+                <form class="form" action="/cart/order" method="post">
+                    <div class="form__field">
+                        <label class="form__label">Ваше имя</label>
+                        <input class="form__input" type="text" name="customerName" value="#(userName)" required>
+                    </div>
+                    <div class="form__field">
+                        <label class="form__label">E-mail</label>
+                        <input class="form__input" type="email" name="customerEmail" value="#(userEmail)" required>
+                    </div>
+                    <button class="button" type="submit">Купить товары</button>
+                </form>
+            </section>
+        #endif
+
+        <p style="margin-top:24px;"><a class="button button_ghost" href="/catalog">Продолжить покупки</a></p>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <h2 class="footer-col__title">О нас</h2>
+            <p>
+                GameCard — небольшой магазин пополнения игровых аккаунтов.
+                Мы продаём карты PlayStation Store и Apple Gift Card, пополняем Steam по логину,
+                а также продаём игры для PS5. Работаем с 2026 года и выдаём коды в течение нескольких минут.
+            </p>
+            <p><a href="/about">Подробнее о магазине</a> · <a href="/about#contacts">Как нас найти</a></p>
+        </div>
+        <div class="footer-col">
+            <h2 class="footer-col__title"><a href="/catalog">Каталог</a></h2>
+            <p>Карты пополнения PlayStation Store и Apple Gift Card, пополнение Steam по логину и игры для PS5.</p>
+        </div>
+        <div class="footer-col">
+            <h2 class="footer-col__title">Покупателям</h2>
+            <ul>
+                <li><a href="/cart">Корзина и заказ</a></li>
+                <li><a href="/profile">Личный кабинет</a></li>
+                <li><a href="/about#contacts">Контакты</a></li>
+            </ul>
+        </div>
+        <div class="footer-col footer-contacts">
+            <h2 class="footer-col__title">Контакты</h2>
+            <address>
+                241035, г. Брянск, ул. Бульвар 50-летия Октября, 7<br>
+                БГТУ, Бежицкий район<br>
+                Почта: <a href="mailto:shin_guards_0t@icloud.com">shin_guards_0t@icloud.com</a><br>
+                Режим работы: ежедневно с 10:00 до 23:00
+            </address>
+            <button class="button button_ghost button_small" type="button" onclick="window.print()">Версия для печати</button>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <p>© 2026 GameCard. Все права защищены.</p>
+    </div>
+</footer>
+
+<nav class="tabbar">
+    <ul class="tabbar__list">
+        <li><a class="tab" href="/"><span class="tab__icon">🏠</span>Главная</a></li>
+        <li><a class="tab" href="/catalog"><span class="tab__icon">🛍️</span>Каталог</a></li>
+        <li><a class="tab tab_active" href="/cart"><span class="tab__icon">🛒</span>Корзина</a></li>
+        <li><a class="tab" href="/profile"><span class="tab__icon">👤</span>Профиль</a></li>
+        <li><a class="tab" href="/admin"><span class="tab__icon">⚙️</span>Админ панель</a></li>
+    </ul>
+</nav>
+
+</body>
+</html>

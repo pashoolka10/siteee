@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Товар — Админка</title>
+    <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="logo" href="/">
+            <img class="logo__image" src="/images/logo.svg" alt="GameCard">
+            <span class="logo__text">GameCard</span>
+        </a>
+        <a class="profile-link" href="/profile">
+            #if(userAvatar != ""):
+                <img class="avatar" src="#(userAvatar)" alt="Аватар">
+            #else:
+                <span class="avatar">#(avatarLetter)</span>
+            #endif
+            <span>#(userLogin)</span>
+        </a>
+    </div>
+</header>
+
+<main>
+    <div class="container section">
+        <section class="profile-card" style="max-width: 800px; text-align: left;">
+            <h2 class="profile-card__title">#if(product): Редактирование #else: Новый товар #endif</h2>
+
+            #if(error != ""):
+                <div class="form__message" style="color: #e879c8; border-color: #e879c8; margin-bottom: 15px;">Ошибка: #(error)</div>
+            #endif
+
+            <!-- enctype обязательно для загрузки файлов! -->
+            <form method="post" enctype="multipart/form-data" class="form" style="max-width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                
+                <div class="form__field">
+                    <label class="form__label">Название</label>
+                    <input type="text" class="form__input" name="name" value="#if(product):#(product.name)#endif" required>
+                </div>
+
+                <div class="form__field">
+                    <label class="form__label">Платформа</label>
+                    <select class="form__input" name="platform">
+                        <option value="playstation" #if(product):#if(product.platform == "playstation"):selected#endif#endif>PlayStation</option>
+                        <option value="apple" #if(product):#if(product.platform == "apple"):selected#endif#endif>Apple</option>
+                        <option value="steam" #if(product):#if(product.platform == "steam"):selected#endif#endif>Steam</option>
+                        <option value="games" #if(product):#if(product.platform == "games"):selected#endif#endif>Игры</option>
+                    </select>
+                </div>
+
+                <div class="form__field">
+                    <label class="form__label">Страна</label>
+                    <select class="form__input" name="country">
+                        <option value="india" #if(product):#if(product.country == "india"):selected#endif#endif>Индия</option>
+                        <option value="turkey" #if(product):#if(product.country == "turkey"):selected#endif#endif>Турция</option>
+                        <option value="usa" #if(product):#if(product.country == "usa"):selected#endif#endif>США</option>
+                        <option value="canada" #if(product):#if(product.country == "canada"):selected#endif#endif>Канада</option>
+                        <option value="russia" #if(product):#if(product.country == "russia"):selected#endif#endif>Россия</option>
+                    </select>
+                </div>
+
+                <div class="form__field">
+                    <label class="form__label">Номинал</label>
+                    <input type="text" class="form__input" name="nominal" value="#if(product):#(product.nominal)#endif" required>
+                </div>
+
+                <div class="form__field">
+                    <label class="form__label">Цена (₽)</label>
+                    <input type="number" class="form__input" name="price" value="#if(product):#(product.price)#endif" required>
+                </div>
+
+                <div class="form__field">
+                    <label class="form__label">Рейтинг (0-5)</label>
+                    <input type="number" step="0.1" class="form__input" name="rating" value="#if(product):#(product.rating)#else:5.0#endif" required>
+                </div>
+
+                <div class="form__field">
+                    <label class="form__label">Популярность</label>
+                    <input type="number" class="form__input" name="popular" value="#if(product):#(product.popular)#else:50#endif" required>
+                </div>
+
+                <div class="form__field">
+                    <label class="form__label">Старая цена (опционально)</label>
+                    <input type="number" class="form__input" name="oldPrice" value="#if(product):#if(product.oldPrice):#(product.oldPrice)#endif#endif">
+                </div>
+
+                <div class="form__field">
+                    <label class="form__label">Картинка товара</label>
+                    <!-- ВОТ ОНА, ЗАГРУЗКА ЧЕРЕЗ FINDER -->
+                    <input type="file" class="form__input" name="imageFile" accept="image/*" style="padding: 10px;">
+                    #if(product):
+                        <small style="color:#a3a5c9; margin-top:4px; display:block;">Текущая: #(product.image)</small>
+                    #endif
+                </div>
+
+                <div class="form__field" style="grid-column: 1 / -1;">
+                    <label class="form__label">Описание</label>
+                    <textarea class="form__input" name="description" rows="3" required>#if(product):#(product.description)#endif</textarea>
+                </div>
+
+                <div class="form__field" style="grid-column: 1 / -1; display: flex; gap: 12px; margin-top: 10px;">
+                    <button class="button" type="submit">Сохранить</button>
+                    <a class="button button_ghost" href="/admin">Отмена</a>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
+
+<nav class="tabbar">
+    <ul class="tabbar__list">
+        <li><a class="tab" href="/"><span class="tab__icon">🏠</span>Главная</a></li>
+        <li><a class="tab" href="/catalog"><span class="tab__icon">🛍️</span>Каталог</a></li>
+        <li><a class="tab" href="/cart"><span class="tab__icon">🛒</span>Корзина</a></li>
+        <li><a class="tab" href="/profile"><span class="tab__icon">👤</span>Профиль</a></li>
+        <li><a class="tab tab_active" href="/admin"><span class="tab__icon">⚙️</span>Админ панель</a></li>
+    </ul>
+</nav>
+
+</body>
+</html>

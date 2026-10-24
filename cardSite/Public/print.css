@@ -1,0 +1,169 @@
+
+/* Версия для печати. Подключается как <link rel="stylesheet" href="/print.css" media="print"> */
+
+body {
+    background: #ffffff;
+    color: #000000;
+    font: 14px/1.45 "Times New Roman", Georgia, serif;
+    padding: 0;
+}
+
+/* Вспомогательные блоки скрываем полностью */
+.site-header,
+.tabbar,
+.site-footer,
+.hero,
+.catalog-toolbar,
+.filters,
+.cta,
+.button,
+.form,
+.map {
+    display: none;
+}
+
+.container {
+    max-width: 100%;
+    padding: 0;
+}
+
+.section {
+    padding: 10px 0;
+}
+
+.page-title {
+    padding: 0 0 10px;
+}
+
+.page-title__title,
+.section__title {
+    font-size: 20px;
+    text-align: left;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+}
+
+.section__subtitle,
+.section__label,
+.page-title__note {
+    color: #000000;
+    text-align: left;
+    margin: 0 0 10px;
+}
+
+.reviews,
+.features,
+.categories,
+.stats,
+.about-grid {
+    display: block;
+}
+
+.review,
+.feature,
+.category,
+.stat,
+.about-card,
+.product-card {
+    border: 1px solid #000000;
+    background: #ffffff;
+    margin-bottom: 10px;
+    padding: 8px 10px;
+    break-inside: avoid;
+}
+
+.product-card__media {
+    display: none;
+}
+
+.products {
+    display: block;
+}
+
+.product-card__name {
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.product-card__description {
+    color: #000000;
+    margin-bottom: 6px;
+}
+
+.product-card__meta {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.product-card__meta li {
+    display: inline;
+    padding: 0 6px 0 0;
+    border: none;
+    color: #000000;
+}
+
+.product-card__rating,
+.price {
+    color: #000000;
+}
+
+.price {
+    font-size: 15px;
+}
+
+.price__old {
+    color: #000000;
+}
+
+.cart-item {
+    display: block;
+    border: 1px solid #000000;
+    background: #ffffff;
+    margin-bottom: 8px;
+    padding: 8px;
+}
+
+.cart-item__image,
+.qty-button,
+.cart-item__remove {
+    display: none;
+}
+
+.cart-item__sum {
+    text-align: left;
+    font-weight: bold;
+}
+
+.cart-total {
+    border: 1px solid #000000;
+    background: #ffffff;
+}
+
+.profile-card {
+    border: 1px solid #000000;
+    background: #ffffff;
+    text-align: left;
+}
+
+.profile-card__avatar {
+    border: 1px solid #000000;
+    background: #ffffff;
+    color: #000000;
+}
+
+.profile-card__text,
+.profile-list li,
+.about-list li {
+    color: #000000;
+}
+
+a:link,
+a:visited {
+    color: #000000;
+    text-decoration: underline;
+}
+
+@page {
+    margin: 15mm;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Админка — GameCard</title>
+    <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="logo" href="/">
+            <img class="logo__image" src="/images/logo.svg" alt="GameCard">
+            <span class="logo__text">GameCard</span>
+        </a>
+        <a class="profile-link" href="/profile">
+            #if(userAvatar != ""):
+                <img class="avatar" src="#(userAvatar)" alt="Аватар">
+            #else:
+                <span class="avatar">#(avatarLetter)</span>
+            #endif
+            <span>#(userLogin)</span>
+        </a>
+    </div>
+</header>
+
+<main>
+    <div class="container section">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+            <h1 class="page-title__title" style="margin: 0;">Управление товарами</h1>
+            <div style="display: flex; gap: 10px;">
+                <a class="button button_ghost" href="/admin/stats">📊 Статистика</a>
+                <a class="button" href="/admin/new">+ Добавить товар</a>
+                <a class="button button_ghost" href="/profile">В профиль</a>
+            </div>
+        </div>
+
+        <section class="profile-card" style="max-width: 100%; text-align: left; padding: 20px; overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <th style="padding: 12px; color: #a3a5c9;">ID</th>
+                        <th style="padding: 12px; color: #a3a5c9;">Название</th>
+                        <th style="padding: 12px; color: #a3a5c9;">Платформа</th>
+                        <th style="padding: 12px; color: #a3a5c9;">Цена</th>
+                        <th style="padding: 12px; color: #a3a5c9; text-align: right;">Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    #for(product in products):
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 12px; color: #a3a5c9; font-size: 12px;">#(product.id)</td>
+                            <td style="padding: 12px;">#(product.name)</td>
+                            <td style="padding: 12px;">#(product.platformTitle)</td>
+                            <td style="padding: 12px;">#(product.price) ₽</td>
+                            <td style="padding: 12px; text-align: right; white-space: nowrap;">
+                                <a class="button button_small" style="padding: 6px 12px; font-size: 13px;" href="/admin/edit/#(product.id)">Ред.</a>
+                                <form action="/admin/delete/#(product.id)" method="post" style="display:inline;" onsubmit="return confirm('Точно удалить этот товар?');">
+                                    <button class="button button_small" style="padding: 6px 12px; font-size: 13px; background: #e879c8;" type="submit">Удал.</button>
+                                </form>
+                            </td>
+                        </tr>
+                    #endfor
+                </tbody>
+            </table>
+        </section>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-bottom" style="border-top: none;">
+        <p>© 2026 GameCard. Все права защищены.</p>
+    </div>
+</footer>
+
+<nav class="tabbar">
+    <ul class="tabbar__list">
+        <li><a class="tab" href="/"><span class="tab__icon">🏠</span>Главная</a></li>
+        <li><a class="tab" href="/catalog"><span class="tab__icon">🛍️</span>Каталог</a></li>
+        <li><a class="tab" href="/cart"><span class="tab__icon">🛒</span>Корзина</a></li>
+        <li><a class="tab" href="/profile"><span class="tab__icon">👤</span>Профиль</a></li>
+        <li><a class="tab tab_active" href="/admin"><span class="tab__icon">⚙️</span>Админ панель</a></li>
+    </ul>
+</nav>
+
+</body>
+</html>

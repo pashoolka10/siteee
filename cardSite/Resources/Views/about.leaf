@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>О нас и контакты — GameCard</title>
+    <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/print.css" media="print">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="logo" href="/">
+            <img class="logo__image" src="/images/logo.svg" alt="GameCard">
+            <span class="logo__text">GameCard</span>
+        </a>
+
+        #if(userLogin != ""):
+            <a class="profile-link" href="/profile">
+                <span class="avatar">#(avatarLetter)</span>
+                <span>#(userLogin)</span>
+            </a>
+        #else:
+            <a class="profile-link" href="#" onclick="showAuthModal('', 'login'); return false;">
+                <span class="avatar">Г</span>
+                <span>Войти</span>
+            </a>
+        #endif
+    </div>
+</header>
+
+<main>
+    <div class="container page-title">
+        <h1 class="page-title__title">О нас</h1>
+        <p class="page-title__note">Магазин пополнения игровых аккаунтов PlayStation и Apple, пополнение Steam по логину.</p>
+    </div>
+
+    <div class="container section">
+        <div class="about-grid">
+            <div>
+                <section class="about-card">
+                    <h2 class="about-card__title">Чем мы занимаемся</h2>
+                    <p>
+                        GameCard — небольшой магазин пополнения игровых аккаунтов. Мы продаём карты
+                        PlayStation Store и Apple Gift Card для аккаунтов Индии, Турции, США и Канады,
+                        пополняем Steam по логину и продаём игры для PlayStation 5. Магазин работает с 2026 года.
+                    </p>
+                </section>
+
+                <section class="about-card">
+                    <h2 class="about-card__title">Как проходит покупка</h2>
+                    <ul class="about-list">
+                        <li>1. Выбираете платформу, страну и номинал карты в каталоге.</li>
+                        <li>2. Добавляете товар в корзину и оформляете заказ.</li>
+                        <li>3. Подтверждаете заказ — только после этого списывается оплата, а код приходит на e-mail.</li>
+                        <li>4. Активируете код в своём аккаунте нужного региона.</li>
+                    </ul>
+                </section>
+
+                <section class="about-card" id="contacts">
+                    <h2 class="about-card__title">Контакты</h2>
+                    <address class="about-address">
+                        Адрес: 241035, г. Брянск, ул. Бульвар 50-летия Октября, 7, Бежицкий район (БГТУ).<br>
+                        Почта: <a href="mailto:shin_guards_0t@icloud.com">shin_guards_0t@icloud.com</a><br>
+                        Режим работы: ежедневно с 10:00 до 23:00.
+                    </address>
+                    <iframe class="map" src="https://yandex.ru/map-widget/v1/?text=%D0%91%D1%80%D1%8F%D0%BD%D1%81%D0%BA%2C%20%D0%B1%D1%83%D0%BB%D1%8C%D0%B2%D0%B0%D1%80%2050-%D0%BB%D0%B5%D1%82%D0%B8%D1%8F%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F%2C%207&amp;z=16" title="Карта: Брянск, БГТУ, бульвар 50-летия Октября, 7" loading="lazy"></iframe>
+                </section>
+            </div>
+
+            <div>
+                <section class="about-card">
+                    <h2 class="about-card__title">Гарантии</h2>
+                    <ul class="about-list">
+                        <li>Код всегда рабочий: если активация не прошла, вернём деньги.</li>
+                        <li>Помогаем выбрать регион — от него зависит цена карты.</li>
+                        <li>Не храним данные банковских карт на сайте.</li>
+                    </ul>
+                </section>
+
+                <section class="about-card">
+                    <h2 class="about-card__title">Реквизиты</h2>
+                    <ul class="about-list">
+                        <li>ИП Десятский П. А.</li>
+                        <li>ИНН 320000000000</li>
+                        <li>Магазин работает как учебный проект БГТУ.</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <h2 class="footer-col__title">О нас</h2>
+            <p>
+                GameCard — небольшой магазин пополнения игровых аккаунтов.
+                Мы продаём карты PlayStation Store и Apple Gift Card, пополняем Steam по логину,
+                а также продаём игры для PS5. Работаем с 2026 года и выдаём коды в течение нескольких минут.
+            </p>
+            <p><a href="/about#contacts">Как нас найти</a></p>
+        </div>
+        <div class="footer-col">
+            <h2 class="footer-col__title"><a href="/catalog">Каталог</a></h2>
+            <p>Карты пополнения PlayStation Store и Apple Gift Card, пополнение Steam по логину и игры для PS5.</p>
+        </div>
+        <div class="footer-col">
+            <h2 class="footer-col__title">Покупателям</h2>
+            <ul>
+                <li><a href="/cart">Корзина и заказ</a></li>
+                <li><a href="/profile">Личный кабинет</a></li>
+                <li><a href="/about#contacts">Контакты</a></li>
+            </ul>
+        </div>
+        <div class="footer-col footer-contacts">
+            <h2 class="footer-col__title">Контакты</h2>
+            <address>
+                241035, г. Брянск, ул. Бульвар 50-летия Октября, 7<br>
+                БГТУ, Бежицкий район<br>
+                Почта: <a href="mailto:shin_guards_0t@icloud.com">shin_guards_0t@icloud.com</a><br>
+                Режим работы: ежедневно с 10:00 до 23:00
+            </address>
+            <button class="button button_ghost button_small" type="button" onclick="window.print()">Версия для печати</button>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <p>© 2026 GameCard. Все права защищены.</p>
+    </div>
+</footer>
+
+<nav class="tabbar">
+    <ul class="tabbar__list">
+        <li><a class="tab" href="/"><span class="tab__icon">🏠</span>Главная</a></li>
+        <li><a class="tab" href="/catalog"><span class="tab__icon">🛍️</span>Каталог</a></li>
+        <li><a class="tab" href="/cart"><span class="tab__icon">🛒</span>Корзина</a></li>
+        <li><a class="tab" href="/profile"><span class="tab__icon">👤</span>Профиль</a></li>
+        <li><a class="tab" href="/admin"><span class="tab__icon">⚙️</span>Админ панель</a></li>
+    </ul>
+</nav>
+
+<script src="/auth.js"></script>
+</body>
+</html>

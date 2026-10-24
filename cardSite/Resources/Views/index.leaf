@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GameCard — карты пополнения PlayStation и Apple</title>
+    <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/print.css" media="print">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="logo" href="/">
+            <img class="logo__image" src="/images/logo.svg" alt="GameCard">
+            <span class="logo__text">GameCard</span>
+        </a>
+
+        #if(userLogin != ""):
+            <a class="profile-link" href="/profile">
+                #if(userAvatar != ""):
+                    <img class="avatar" src="#(userAvatar)" alt="Аватар">
+                #else:
+                    <span class="avatar">#(avatarLetter)</span>
+                #endif
+                <span>#(userLogin)</span>
+            </a>
+        #else:
+            <a class="profile-link" href="#" onclick="showAuthModal('', 'login'); return false;">
+                <span class="avatar">Г</span>
+                <span>Войти</span>
+            </a>
+        #endif
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero__title">Карты пополнения <span>PlayStation и Apple</span></h1>
+            <p class="hero__text">Покупайте карты для аккаунтов Индии, Турции, США и Канады.</p>
+
+            <div class="hero__buttons">
+                <a class="button" href="/catalog">Перейти в каталог</a>
+
+                #if(userLogin == ""):
+                    <button class="button button_ghost" type="button"
+                            onclick="showAuthModal('', 'register')">
+                        Зарегистрироваться
+                    </button>
+                #endif
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <h2 class="footer-col__title">О нас</h2>
+            <p>
+                GameCard — небольшой магазин пополнения игровых аккаунтов.
+                Мы продаём карты PlayStation Store и Apple Gift Card, пополняем Steam по логину,
+                а также продаём игры для PS5. Работаем с 2026 года и выдаём коды в течение нескольких минут.
+            </p>
+            <p><a href="/about">Подробнее о магазине</a> · <a href="/about#contacts">Как нас найти</a></p>
+        </div>
+        <div class="footer-col">
+            <h2 class="footer-col__title"><a href="/catalog">Каталог</a></h2>
+            <p>Карты пополнения PlayStation Store и Apple Gift Card, пополнение Steam по логину и игры для PS5.</p>
+        </div>
+        <div class="footer-col">
+            <h2 class="footer-col__title">Покупателям</h2>
+            <ul>
+                <li><a href="/cart">Корзина и заказ</a></li>
+                <li><a href="/profile">Личный кабинет</a></li>
+                <li><a href="/about#contacts">Контакты</a></li>
+            </ul>
+        </div>
+        <div class="footer-col footer-contacts">
+            <h2 class="footer-col__title">Контакты</h2>
+            <address>
+                241035, г. Брянск, ул. Бульвар 50-летия Октября, 7<br>
+                БГТУ, Бежицкий район<br>
+                Почта: <a href="mailto:shin_guards_0t@icloud.com">shin_guards_0t@icloud.com</a><br>
+                Режим работы: ежедневно с 10:00 до 23:00
+            </address>
+            <button class="button button_ghost button_small" type="button" onclick="window.print()">Версия для печати</button>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <p>© 2026 GameCard. Все права защищены.</p>
+    </div>
+</footer>
+
+<nav class="tabbar">
+    <ul class="tabbar__list">
+        <li><a class="tab tab_active" href="/"><span class="tab__icon">🏠</span>Главная</a></li>
+        <li><a class="tab" href="/catalog"><span class="tab__icon">🛍️</span>Каталог</a></li>
+        <li><a class="tab" href="/cart"><span class="tab__icon">🛒</span>Корзина</a></li>
+        <li><a class="tab" href="/profile"><span class="tab__icon">👤</span>Профиль</a></li>
+        <li><a class="tab" href="/admin"><span class="tab__icon">⚙️</span>Админ панель</a></li>
+    </ul>
+</nav>
+
+<!-- Всплывающее окно (п.5) -->
+<div id="authModal" class="auth-modal" hidden>
+    <div class="auth-modal__overlay" onclick="hideAuthModal()"></div>
+    <div class="auth-modal__box">
+        <button class="auth-modal__close" type="button" onclick="hideAuthModal()">×</button>
+        <h2 class="auth-modal__title" id="authTitle">Вход</h2>
+        <p class="auth-modal__message" id="authMessage" hidden></p>
+        <div class="auth-modal__tabs">
+            <button type="button" class="auth-modal__tab auth-modal__tab_active"
+                    id="tabLogin" onclick="switchAuthTab('login')">Вход</button>
+            <button type="button" class="auth-modal__tab"
+                    id="tabRegister" onclick="switchAuthTab('register')">Регистрация</button>
+        </div>
+        <form class="auth-modal__form" id="authLoginForm" action="/login" method="post">
+            <input class="form__input" name="login" placeholder="Логин" required>
+            <input class="form__input" name="password" type="password" placeholder="Пароль" required>
+            <button class="button" type="submit">Войти</button>
+            <p style="margin-top:4px; font-size:13px; text-align:right;">
+                <a href="/forgot">Забыли пароль?</a>
+            </p>
+        </form>
+        <form class="auth-modal__form" id="authRegisterForm" action="/register"
+              method="post" enctype="multipart/form-data" hidden>
+            <input class="form__input" name="login" placeholder="Логин" required>
+            <input class="form__input" name="password" type="password" placeholder="Пароль" required>
+            <input class="form__input" name="fullName" placeholder="ФИО" required>
+            <input class="form__input" name="email" type="email" placeholder="Email" required>
+
+            <label style="color:#a3a5c9; font-size:14px;">Аватар (не обязательно):</label>
+            <input class="form__input" name="avatar" type="file" accept="image/*">
+
+            <button class="button" type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
+
+<script src="/auth.js"></script>
+</body>
+</html>

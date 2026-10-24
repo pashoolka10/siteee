@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Регистрация — GameCard</title>
+    <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/print.css" media="print">
+</head>
+<body>
+    <div class="container section">
+        <section class="profile-card">
+            <h1 class="profile-card__title">Регистрация</h1>
+            <p class="profile-card__text">
+                Логин — только латиница и цифры. Аватар можно указать ссылкой на картинку.
+            </p>
+
+            <form action="/register" method="post" class="form" style="margin:0 auto; text-align:left;">
+                <input class="form__input" name="login" placeholder="Логин" required>
+                <input class="form__input" name="password" type="password" placeholder="Пароль (минимум 6 символов)" required>
+                <input class="form__input" name="fullName" placeholder="ФИО" required>
+                <input class="form__input" name="email" type="email" placeholder="Email" required>
+                <input class="form__input" name="avatarURL" placeholder="Ссылка на аватар">
+                <button class="button" type="submit">Зарегистрироваться</button>
+            </form>
+
+            <p style="margin-top:18px;"><a href="/login">Уже есть аккаунт? Войти</a></p>
+            <p><a href="/">На главную</a></p>
+        </section>
+    </div>
+</body>
+</html>

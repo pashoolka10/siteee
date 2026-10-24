@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Профиль — GameCard</title>
+    <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/print.css" media="print">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="logo" href="/">
+            <img class="logo__image" src="/images/logo.svg" alt="GameCard">
+            <span class="logo__text">GameCard</span>
+        </a>
+        <a class="profile-link" href="/profile">
+            <span class="avatar">#(avatarLetter)</span>
+            <span>#(user.login)</span>
+        </a>
+    </div>
+</header>
+
+<main>
+    <div class="container section">
+
+        #if(error != ""):
+            <p class="form__message">#(error)</p>
+        #endif
+
+        <section class="profile-card">
+            #if(user.avatarURL):
+                <img src="#(user.avatarURL)" alt="Аватар"
+                     style="width:92px; height:92px; border-radius:50%; margin:0 auto 20px; display:block; object-fit:cover;">
+            #else:
+                <p class="profile-card__avatar">#(avatarLetter)</p>
+            #endif
+
+            <h2 class="profile-card__title">#(user.fullName)</h2>
+
+            <p class="profile-card__text">
+                <strong>Логин:</strong> #(user.login)<br>
+                <strong>Email:</strong> #(user.email)
+            </p>
+
+            <div class="buttons" style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+                <a class="button" href="/profile/edit">Редактировать</a>
+                <!-- НОВАЯ КНОПКА АДМИНКИ -->
+                <a class="button button_ghost" href="/admin">Админ панель</a>
+                <a class="button button_ghost" href="/cart">Корзина</a>
+                <a class="button button_ghost" href="/logout">Выйти</a>
+            </div>
+        </section>
+
+        <section class="profile-card" id="purchases" style="margin-top:24px;">
+            <h2 class="profile-card__title">Мои покупки</h2>
+
+            #if(count(orders) == 0):
+                <p class="profile-card__text">Покупок пока нет. <a href="/catalog">Перейти в каталог</a></p>
+            #else:
+                <ul class="about-list" style="text-align:left;">
+                    #for(order in orders):
+                        <li style="margin-bottom:14px;">
+                            <strong>#(order.dateText)</strong> — <strong>#(order.total) ₽</strong><br>
+                            <span class="profile-card__text">#(order.items)</span><br>
+                            <span class="profile-card__text">Код отправлен на #(order.customerEmail)</span>
+                        </li>
+                    #endfor
+                </ul>
+            #endif
+        </section>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <h2 class="footer-col__title">О нас</h2>
+            <p>
+                GameCard — небольшой магазин пополнения игровых аккаунтов.
+                Мы продаём карты PlayStation Store и Apple Gift Card, пополняем Steam по логину,
+                а также продаём игры для PS5. Работаем с 2026 года и выдаём коды в течение нескольких минут.
+            </p>
+            <p><a href="/about">Подробнее о магазине</a> · <a href="/about#contacts">Как нас найти</a></p>
+        </div>
+        <div class="footer-col">
+            <h2 class="footer-col__title"><a href="/catalog">Каталог</a></h2>
+            <p>Карты пополнения PlayStation Store и Apple Gift Card, пополнение Steam по логину и игры для PS5.</p>
+        </div>
+        <div class="footer-col">
+            <h2 class="footer-col__title">Покупателям</h2>
+            <ul>
+                <li><a href="/cart">Корзина и заказ</a></li>
+                <li><a href="/profile">Личный кабинет</a></li>
+                <li><a href="/about#contacts">Контакты</a></li>
+            </ul>
+        </div>
+        <div class="footer-col footer-contacts">
+            <h2 class="footer-col__title">Контакты</h2>
+            <address>
+                241035, г. Брянск, ул. Бульвар 50-летия Октября, 7<br>
+                БГТУ, Бежицкий район<br>
+                Почта: <a href="mailto:shin_guards_0t@icloud.com">shin_guards_0t@icloud.com</a><br>
+                Режим работы: ежедневно с 10:00 до 23:00
+            </address>
+            <button class="button button_ghost button_small" type="button" onclick="window.print()">Версия для печати</button>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <p>© 2026 GameCard. Все права защищены.</p>
+    </div>
+</footer>
+
+<nav class="tabbar">
+    <ul class="tabbar__list">
+        <li><a class="tab" href="/"><span class="tab__icon">🏠</span>Главная</a></li>
+        <li><a class="tab" href="/catalog"><span class="tab__icon">🛍️</span>Каталог</a></li>
+        <li><a class="tab" href="/cart"><span class="tab__icon">🛒</span>Корзина</a></li>
+        <li><a class="tab tab_active" href="/profile"><span class="tab__icon">👤</span>Профиль</a></li>
+        <li><a class="tab" href="/admin"><span class="tab__icon">⚙️</span>Админ панель</a></li>
+    </ul>
+</nav>
+
+</body>
+</html>
